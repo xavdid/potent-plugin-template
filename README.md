@@ -1,4 +1,4 @@
-# potent-example
+# potent-plugin-template
 
 A template for writing [potent](https://github.com/xavdid/potent) plugins. This provides a single example operation, `EchoOp`.
 
