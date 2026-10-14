@@ -1,7 +1,6 @@
-from pathlib import Path
 from typing import Literal, override
 
-from potent import BaseConfig, BaseOperation, OperationResult
+from potent import BaseConfig, BaseOperation, Context, OperationResult
 
 
 class EchoOp(BaseOperation):
@@ -19,9 +18,9 @@ class EchoOp(BaseOperation):
     config: OpConfig
 
     @override
-    def run(self, directory: Path) -> OperationResult:
+    def run(self, context: Context) -> OperationResult:
         cmd = ["echo", self.config.text]
-        return self.exec_cmd_with_result(directory, cmd)
+        return context.exec_cmd(cmd)
 
     @property
     @override
