@@ -1,4 +1,4 @@
-from typing import Literal, override
+from typing import ClassVar, Literal, override
 
 from potent import BaseConfig, BaseOperation, Context, OperationResult
 
@@ -14,7 +14,14 @@ class EchoOp(BaseOperation):
         the text to echo
         """
 
-    slug: Literal["potent-example.echo"] = "potent-example.echo"
+        name: str
+        """
+        Used to differentiate between multiple instances of this operation
+        """
+
+        ignored_fields_for_compare: ClassVar[set[str]] = {"name"}
+
+    slug: Literal["potent-plugin-example.echo"] = "potent-plugin-example.echo"
     config: OpConfig
 
     @override
@@ -25,4 +32,4 @@ class EchoOp(BaseOperation):
     @property
     @override
     def summary(self) -> str:
-        return f"echo ({self.config.text})"
+        return f"echo ({self.config.name})"
